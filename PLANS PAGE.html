@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Fitness · Plans</title>
+  <!-- Font & base styling — keeping colours minimal: black / white / grey tones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#111;
+color:white;
+}
+
+header{
+background:black;
+padding:20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{   
+height: 45px;
+margin-top: 0px;
+margin-bottom: 0px;
+}
+.log{   
+height: 30px;
+margin-top: 10px;
+margin-bottom: 0px;
+margin-left: 0px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:20px;
+}
+
+nav ul li a{
+color:rgb(94, 255, 0);
+text-decoration:none;
+}
+
+nav ul li a:hover{
+color:green;
+}
+
+    .nav-links a.active {
+      font-weight: 700;
+      color: #000;
+      border-bottom: 2px solid #1e1e1e;
+      padding-bottom: 0.25rem;
+    }
+
+    .join-btn {
+      background: #1e1e1e;                /* black button – keeps monochrome */
+      color: white !important;
+      padding: 0.6rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+
+    .join-btn:hover {
+      background: #3a3a3a;                 /* dark grey, still within palette */
+      transform: scale(1.02);
+    }
+
+    /* --- franchise headline --- */
+    .franchise-tag {
+      text-align: center;
+      margin: 3rem 0 1.5rem 0;
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      color: #1e1e1e;
+      border-top: 1px solid #ffffff;
+      padding-top: 2.5rem;
+    }
+
+    .franchise-tag span {
+      font-weight: 400;
+      color: #4a4a4a;                      /* softer grey for the brand name part */
+      display: block;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* --- plans grid --- */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0 4rem 0;
+    }
+
+    .plan-card {
+      background: #ffffff;                 /* pure white cards */
+      border-radius: 28px;
+      padding: 2.2rem 2rem 2rem 2rem;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      border: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.15);
+      border-color: #d4d4d4;
+    }
+
+    .plan-name {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+      color: #000;
+    }
+
+    .price {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin: 0.75rem 0 1.25rem 0;
+      line-height: 1.2;
+    }
+
+    .price small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #6f6f6f;
+      letter-spacing: 0.3px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #eaeaea;
+      width: 100%;
+      margin: 1.5rem 0 1.8rem 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 2.2rem;
+      flex-grow: 1;
+    }
+
+    .feature-list li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 400;
+      color: #2e2e2e;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      font-weight: 700;
+      color: #1e1e1e;                      /* black check marks */
+      font-size: 1.1rem;
+      display: inline-block;
+      width: 1.2rem;
+    }
+
+    .plan-btn {
+      background: transparent;
+      border: 2px solid #1e1e1e;
+      color: #1e1e1e;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1rem 0;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .plan-btn:hover {
+      background: #1e1e1e;
+      color: #ffffff;
+    }
+
+    /* keep original ₹ prices & text exactly as screenshot */
+    .price-amount {
+      display: inline-block;
+    }
+
+    /* small extra info for realism */
+    .card-badge {
+      font-size: 0.8rem;
+      color: #7a7a7a;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* responsiveness */
+    @media (max-width: 900px) {
+      .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .plans-grid {
+        grid-template-columns: 1fr;
+      }
+      .franchise-tag {
+        font-size: 1.2rem;
+      }
+      .container {
+        padding: 0 1.5rem;
+      }
+    }
+
+    /* active plan state (just for visual interest) – not changing colours */
+    .plan-card.basic .plan-name::after {
+      content: " • basic";
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #6b6b6b;
+      margin-left: 0.5rem;
+      text-transform: lowercase;
+    }
+    /* remove that after if not needed – just subtle */
+    .plan-card.premium .plan-name::after {
+      content: " • most popular";
+      font-size: 0.75rem;
+      background: #ececec;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      margin-left: 0.8rem;
+      font-weight: 500;
+      color: #2b2b2b;
+      letter-spacing: 0.3px;
+      text-transform: none;
+    }
+
+    /* keep footer clean */
+    .footnote {
+      text-align: center;
+      color: #6b6b6b;
+      font-size: 0.9rem;
+      margin: 3rem 0 2rem 0;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- header exactly as described: Gemini Fitness, nav, Join Now button -->
+  <header>
+
+<nav>
+<ul>
+<img src="ChatGPT Image Mar 10, 2026, 02_44_43 PM.png" alt="Gemini Fitness" class="logo">
+<img src="ChatGPT Image Mar 10, 2026, 02_49_29 PM.png" alt="Gemini Fitness" class="log">
+</ul>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="SERVICES PAGE.html">Studio</a></li>
+<li><a href="TRAINER PAGE.html">Membership Benefits</a></li>
+<li><a href="PLANS PAGE.html">Plans</a></li>
+</ul>
+<ul>
+<li><a href="CONTACT PAGE.html" class="join-now">Join Now</a></li>
+</ul>
+
+</nav>
+
+</header>
+
+    <!-- franchise opportunity line (exact wording) -->
+    <div class="franchise-tag">
+      FRANCHISE OPPORTUNITY FOR INDIA'S MOST UNIQUE FITNESS STUDIO
+      <span>Gemini Fitness</span>
+    </div>
+
+    <!-- three plan cards – prices and labels as per screenshot -->
+    <div class="plans-grid">
+      
+      <!-- Basic card -->
+      <div class="plan-card basic">
+        <div class="card-badge"> </div> <!-- spacer for alignment -->
+        <div class="plan-name">Basic</div>
+        <div class="price">
+          ₹699 <small>/ Month</small>
+        </div>
+        <div class="divider"></div>
+        <ul class="feature-list">
+          <li>Access to studio (off-peak)</li>
+          <li>1 group class per week</li>
+          <li>Locker room access</li>
+          <li>Basic fitness assessment</li>
+        </ul>
+        <a href="CONTACT PAGE.html" class="plan-btn">Join</a>
+      </div>
+
+      <!-- Premium card (with subtle "most popular" badge) -->
+      <div class="plan-card premium">
+        <div class="card-badge">✨ recommended</div>
+        <div class="plan-name">Premium</div>
+        <div class="price">
+          ₹3999 <small>/ Quarter</small>
+        </div>
+        <div class="divider"></div>
+        <ul class="feature-list">
+          <li>Unlimited studio access</li>
+          <li>4 group classes per week</li>
+          <li>Locker & towel service</li>
+          <li>Monthly nutrition consult</li>
+          <li>Access to rooftop gym</li>
+        </ul>
+        <a href="CONTACT PAGE.html" class="plan-btn">Join</a>
+      </div>
+
+      <!-- Elite card -->
+      <div class="plan-card elite">
+        <div class="card-badge"> </div>
+        <div class="plan-name">Elite</div>
+        <div class="price">
+          ₹6999 <small>/ Year</small>
+        </div>
+        <div class="divider"></div>
+        <ul class="feature-list">
+          <li>24/7 priority access</li>
+          <li>Unlimited classes & workshops</li>
+          <li>Spa & recovery area</li>
+          <li>1-on-1 personal training (4x/month)</li>
+          <li>Exclusive member events</li>
+        </ul>
+        <a href="CONTACT PAGE.html" class="plan-btn">Join</a>
+      </div>
+    </div>
+
+    <!-- small footnote to keep elegance (no extra colours) -->
+    <div class="footnote">
+      *All memberships include free WiFi, app access, and changing facilities.<br>
+      Prices are inclusive of all taxes. T&C apply.
+    </div>
+  </div>
+
+  <!-- subtle decorative line – only greyscale -->
+</body>
+</html>
